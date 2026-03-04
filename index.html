@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シッターさがし - 東京のベビーシッター比較サイト</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header-inner">
+      <h1 class="logo">
+        <span class="logo-icon">&#x1F476;</span>
+        シッターさがし
+      </h1>
+      <nav class="nav">
+        <a href="#search">シッター検索</a>
+        <a href="#how-it-works">使い方</a>
+        <a href="#compare">比較</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="hero-title">東京で、<br>今すぐ見つかる<br>ベビーシッター</h2>
+        <p class="hero-subtitle">空き状況をリアルタイムで比較して、あなたにぴったりのシッターを見つけましょう</p>
+        <div class="hero-search">
+          <div class="hero-search-row">
+            <div class="search-field">
+              <label>エリア</label>
+              <select id="heroArea">
+                <option value="">東京都全域</option>
+                <option value="渋谷区">渋谷区</option>
+                <option value="新宿区">新宿区</option>
+                <option value="港区">港区</option>
+                <option value="目黒区">目黒区</option>
+                <option value="世田谷区">世田谷区</option>
+                <option value="品川区">品川区</option>
+                <option value="中央区">中央区</option>
+                <option value="千代田区">千代田区</option>
+                <option value="文京区">文京区</option>
+                <option value="豊島区">豊島区</option>
+                <option value="杉並区">杉並区</option>
+                <option value="練馬区">練馬区</option>
+                <option value="江東区">江東区</option>
+                <option value="大田区">大田区</option>
+              </select>
+            </div>
+            <div class="search-field">
+              <label>日時</label>
+              <select id="heroDate">
+                <option value="now">今すぐ</option>
+                <option value="today">今日中</option>
+                <option value="tomorrow">明日</option>
+                <option value="week">今週中</option>
+              </select>
+            </div>
+            <div class="search-field">
+              <label>お子さまの年齢</label>
+              <select id="heroAge">
+                <option value="">指定なし</option>
+                <option value="0">0歳</option>
+                <option value="1">1歳</option>
+                <option value="2">2歳</option>
+                <option value="3">3歳</option>
+                <option value="4-6">4〜6歳</option>
+                <option value="7-12">7〜12歳</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-search" id="heroSearchBtn">検索する</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number" id="availableCount">--</span>
+            <span class="stat-label">名が今すぐ対応可能</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15</span>
+            <span class="stat-label">サービス掲載中</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">23区</span>
+            <span class="stat-label">東京全域対応</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使い方セクション -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">使い方はかんたん3ステップ</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-icon">&#x1F50D;</div>
+          <h3>条件を入力</h3>
+          <p>エリア・日時・お子さまの年齢を選んで検索</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-icon">&#x1F4CA;</div>
+          <h3>比較する</h3>
+          <p>料金・評価・サービス内容をかんたん比較</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-icon">&#x2705;</div>
+          <h3>予約する</h3>
+          <p>気に入ったサービスの公式サイトから予約</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 検索結果セクション -->
+  <section class="search-section" id="search">
+    <div class="container">
+      <h2 class="section-title">ベビーシッターを探す</h2>
+
+      <!-- フィルターバー -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>エリア</label>
+          <select id="filterArea">
+            <option value="">すべて</option>
+            <option value="渋谷区">渋谷区</option>
+            <option value="新宿区">新宿区</option>
+            <option value="港区">港区</option>
+            <option value="目黒区">目黒区</option>
+            <option value="世田谷区">世田谷区</option>
+            <option value="品川区">品川区</option>
+            <option value="中央区">中央区</option>
+            <option value="千代田区">千代田区</option>
+            <option value="文京区">文京区</option>
+            <option value="豊島区">豊島区</option>
+            <option value="杉並区">杉並区</option>
+            <option value="練馬区">練馬区</option>
+            <option value="江東区">江東区</option>
+            <option value="大田区">大田区</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>料金</label>
+          <select id="filterPrice">
+            <option value="">指定なし</option>
+            <option value="1500">〜1,500円/時</option>
+            <option value="2000">〜2,000円/時</option>
+            <option value="2500">〜2,500円/時</option>
+            <option value="3000">〜3,000円/時</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>空き状況</label>
+          <select id="filterAvailability">
+            <option value="">すべて</option>
+            <option value="now">今すぐ対応可</option>
+            <option value="today">今日対応可</option>
+            <option value="tomorrow">明日対応可</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>並び替え</label>
+          <select id="sortBy">
+            <option value="rating">評価が高い順</option>
+            <option value="price-low">料金が安い順</option>
+            <option value="price-high">料金が高い順</option>
+            <option value="available">空きが多い順</option>
+          </select>
+        </div>
+        <div class="filter-group filter-tags">
+          <label>こだわり条件</label>
+          <div class="tags">
+            <button class="tag" data-tag="保育士資格">保育士資格</button>
+            <button class="tag" data-tag="英語対応">英語対応</button>
+            <button class="tag" data-tag="病児保育">病児保育</button>
+            <button class="tag" data-tag="送迎あり">送迎あり</button>
+            <button class="tag" data-tag="家事代行">家事代行</button>
+            <button class="tag" data-tag="当日予約OK">当日予約OK</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 検索結果数 -->
+      <div class="results-header">
+        <p class="results-count"><span id="resultsCount">0</span> 件のサービスが見つかりました</p>
+        <button class="btn btn-outline btn-compare" id="compareBtn" disabled>
+          <span>&#x1F4CA;</span> 選択したサービスを比較 (<span id="compareCount">0</span>)
+        </button>
+      </div>
+
+      <!-- サービスカード一覧 -->
+      <div class="services-grid" id="servicesGrid">
+        <!-- JSで動的に生成 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 比較モーダル -->
+  <div class="modal-overlay" id="compareModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>サービス比較</h2>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="compare-table-wrapper">
+          <table class="compare-table" id="compareTable">
+            <!-- JSで動的に生成 -->
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- サービス詳細モーダル -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal modal-detail">
+      <div class="modal-header">
+        <h2 id="detailTitle">サービス詳細</h2>
+        <button class="modal-close" id="detailModalClose">&times;</button>
+      </div>
+      <div class="modal-body" id="detailBody">
+        <!-- JSで動的に生成 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3><span>&#x1F476;</span> シッターさがし</h3>
+          <p>東京のベビーシッターサービスを比較・検索できるポータルサイトです。</p>
+        </div>
+        <div class="footer-note">
+          <p>※ 本サイトはデモサイトです。掲載情報は架空のものです。</p>
+          <p>※ 実際のベビーシッターのご利用は、各サービスの公式サイトをご確認ください。</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 シッターさがし - ベビーシッター比較サイト</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
