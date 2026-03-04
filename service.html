@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス詳細 - シッターさがし</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .service-hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .service-hero-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .service-hero h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .service-hero p {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .service-hero .card-rating {
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .service-body {
+      padding: 0 0 80px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+    .service-main section {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .service-main section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-light);
+    }
+    .service-sidebar {
+      position: sticky;
+      top: 84px;
+      align-self: start;
+    }
+    .price-card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      border: 2px solid var(--primary);
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .price-card .price-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    .price-card .price-amount {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 4px 0;
+    }
+    .price-card .price-unit {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .price-card .price-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    .price-card .btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 16px;
+      padding: 14px;
+      font-size: 1rem;
+    }
+    .info-card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .info-card h4 {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 12px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+    }
+    .info-row .label {
+      color: var(--text-light);
+    }
+    .info-row .value {
+      font-weight: 600;
+    }
+    .feature-list {
+      list-style: none;
+    }
+    .feature-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+    }
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    .feature-list li::before {
+      content: "\2713";
+      color: var(--secondary);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .area-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .area-tag {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .avail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .avail-card {
+      text-align: center;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+    }
+    .avail-card .num {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+    }
+    .avail-card .lbl {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+    .avail-card.now { background: #E8F8F5; }
+    .avail-card.now .num { color: #00B894; }
+    .avail-card.today { background: #FFF3E0; }
+    .avail-card.today .num { color: #E17055; }
+    .avail-card.tomorrow { background: #E8F0FE; }
+    .avail-card.tomorrow .num { color: #3498DB; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .back-link:hover { color: var(--primary); }
+    .demo-banner {
+      background: #FFF8E1;
+      border: 1px solid #FFE082;
+      border-radius: var(--radius-sm);
+      padding: 12px 20px;
+      font-size: 0.82rem;
+      color: #F57F17;
+      text-align: center;
+      margin-top: 12px;
+    }
+    @media (max-width: 768px) {
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-sidebar {
+        position: static;
+      }
+      .service-hero h2 {
+        font-size: 1.5rem;
+      }
+      .avail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" style="text-decoration:none">
+        <h1 class="logo">
+          <span class="logo-icon">&#x1F476;</span>
+          シッターさがし
+        </h1>
+      </a>
+      <nav class="nav">
+        <a href="index.html#search">シッター検索</a>
+        <a href="index.html#how-it-works">使い方</a>
+        <a href="index.html#compare">比較</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="service-hero" id="serviceHero">
+      <!-- JSで動的に生成 -->
+    </div>
+
+    <div class="service-body">
+      <a href="index.html" class="back-link">&larr; 検索結果に戻る</a>
+      <div class="service-grid">
+        <div class="service-main" id="serviceMain">
+          <!-- JSで動的に生成 -->
+        </div>
+        <div class="service-sidebar" id="serviceSidebar">
+          <!-- JSで動的に生成 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3><span>&#x1F476;</span> シッターさがし</h3>
+          <p>東京のベビーシッターサービスを比較・検索できるポータルサイトです。</p>
+        </div>
+        <div class="footer-note">
+          <p>※ 本サイトはデモサイトです。掲載情報は架空のものです。</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 シッターさがし - ベビーシッター比較サイト</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const hashId = window.location.hash.replace('#', '');
+      const id = parseInt(params.get('id') || hashId);
+      const service = SITTER_SERVICES.find(s => s.id === id);
+
+      if (!service) {
+        document.getElementById('serviceHero').innerHTML = '<h2>サービスが見つかりません</h2><p><a href="index.html">トップページへ戻る</a></p>';
+        return;
+      }
+
+      document.title = service.name + ' - シッターさがし';
+
+      // 星評価
+      function getStars(rating) {
+        const full = Math.floor(rating);
+        const half = rating % 1 >= 0.5 ? 1 : 0;
+        const empty = 5 - full - half;
+        return '\u2605'.repeat(full) + (half ? '\u2606' : '') + '\u2606'.repeat(empty);
+      }
+
+      // ヒーロー
+      document.getElementById('serviceHero').innerHTML = `
+        <div class="service-hero-logo" style="background:${service.logoColor}">${service.logo}</div>
+        <h2>${service.name}</h2>
+        <p>${service.description}</p>
+        <div class="card-rating">
+          <span class="stars" style="font-size:1.2rem">${getStars(service.rating)}</span>
+          <span class="rating-number" style="font-size:1.2rem">${service.rating}</span>
+          <span class="review-count">(${service.reviewCount}件の口コミ)</span>
+        </div>
+      `;
+
+      // メインコンテンツ
+      document.getElementById('serviceMain').innerHTML = `
+        <section>
+          <h3>&#x1F552; 現在の空き状況</h3>
+          <div class="avail-grid">
+            <div class="avail-card now">
+              <span class="num">${service.availableNow}</span>
+              <span class="lbl">名が今すぐ対応可能</span>
+            </div>
+            <div class="avail-card today">
+              <span class="num">${service.availableToday}</span>
+              <span class="lbl">名が今日対応可能</span>
+            </div>
+            <div class="avail-card tomorrow">
+              <span class="num">${service.availableTomorrow}</span>
+              <span class="lbl">名が明日対応可能</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>&#x2728; サービスの特徴</h3>
+          <ul class="feature-list">
+            ${service.features.map(f => '<li>' + f + '</li>').join('')}
+          </ul>
+        </section>
+
+        <section>
+          <h3>&#x1F4CD; 対応エリア</h3>
+          <div class="area-tags">
+            ${service.areas.map(a => '<span class="area-tag">' + a + '</span>').join('')}
+          </div>
+        </section>
+
+        <section>
+          <h3>&#x1F4CB; 基本情報</h3>
+          <div class="info-row"><span class="label">対象年齢</span><span class="value">${service.ageRange}</span></div>
+          <div class="info-row"><span class="label">対応時間</span><span class="value">${service.operatingHours}</span></div>
+          <div class="info-row"><span class="label">最低利用時間</span><span class="value">${service.minimumHours}時間〜</span></div>
+          <div class="info-row"><span class="label">キャンセルポリシー</span><span class="value">${service.cancellationPolicy}</span></div>
+          <div class="info-row"><span class="label">保険</span><span class="value">${service.insurance}</span></div>
+        </section>
+      `;
+
+      // サイドバー
+      document.getElementById('serviceSidebar').innerHTML = `
+        <div class="price-card">
+          <div class="price-label">ご利用料金</div>
+          <div class="price-amount">&yen;${service.pricePerHour.toLocaleString()}</div>
+          <div class="price-unit">/ 1時間あたり（税込）</div>
+          <div class="price-note">最低 ${service.minimumHours}時間〜ご利用いただけます</div>
+          <button class="btn btn-primary" onclick="alert('デモサイトのため、実際の予約はできません。')">予約する</button>
+          <div class="demo-banner">※ デモサイトのため、実際の予約はできません</div>
+        </div>
+        <div class="info-card">
+          <h4>料金の詳細</h4>
+          <div class="info-row"><span class="label">時間単価</span><span class="value">&yen;${service.pricePerHour.toLocaleString()}/時間</span></div>
+          <div class="info-row"><span class="label">入会金</span><span class="value">${service.registrationFee === 0 ? '無料' : '&yen;' + service.registrationFee.toLocaleString()}</span></div>
+          <div class="info-row"><span class="label">年会費</span><span class="value">${service.annualFee === 0 ? '無料' : '&yen;' + service.annualFee.toLocaleString()}</span></div>
+        </div>
+      `;
+    })();
+  </script>
+</body>
+</html>

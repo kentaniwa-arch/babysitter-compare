@@ -268,7 +268,7 @@
         </div>
         <div class="card-footer">
           <button class="btn btn-detail btn-sm" data-id="${service.id}">詳細を見る</button>
-          <button class="btn btn-primary btn-sm btn-official" data-name="${service.name}" onclick="showToast('${service.name}')">公式サイトへ</button>
+          <a href="service.html#${service.id}" class="btn btn-primary btn-sm">公式サイトへ</a>
         </div>
       </div>
     `;
@@ -473,7 +473,7 @@
       </div>
 
       <div class="detail-cta">
-        <button class="btn btn-primary btn-official" data-name="${service.name}" onclick="showToast('${service.name}')">公式サイトで予約する</button>
+        <a href="service.html#${service.id}" class="btn btn-primary" style="text-decoration:none">公式サイトで予約する</a>
       </div>
     `;
 
