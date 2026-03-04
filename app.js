@@ -103,6 +103,15 @@
         detailModal.classList.remove('active');
       }
     });
+
+    // 公式サイトボタン（イベントデリゲーション）
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-official');
+      if (btn) {
+        e.preventDefault();
+        showToast(btn.dataset.name);
+      }
+    });
   }
 
   // --- 今すぐ対応可能な数を更新 ---
@@ -203,6 +212,7 @@
         showDetailModal(id);
       });
     });
+
   }
 
   // --- サービスカードHTML生成 ---
@@ -258,7 +268,7 @@
         </div>
         <div class="card-footer">
           <button class="btn btn-detail btn-sm" data-id="${service.id}">詳細を見る</button>
-          <button class="btn btn-primary btn-sm" onclick="window.open('${service.url}', '_blank')">公式サイトへ</button>
+          <button class="btn btn-primary btn-sm btn-official" data-name="${service.name}" onclick="showToast('${service.name}')">公式サイトへ</button>
         </div>
       </div>
     `;
@@ -463,11 +473,39 @@
       </div>
 
       <div class="detail-cta">
-        <button class="btn btn-primary" onclick="window.open('${service.url}', '_blank')">公式サイトで予約する</button>
+        <button class="btn btn-primary btn-official" data-name="${service.name}" onclick="showToast('${service.name}')">公式サイトで予約する</button>
       </div>
     `;
 
     detailModal.classList.add('active');
+  }
+
+  // --- トースト通知 ---
+  window.showToast = showToast;
+  function showToast(serviceName) {
+    // 既存のトーストがあれば削除
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <div class="toast-icon">&#x1F4E2;</div>
+      <div class="toast-text">
+        <strong>${serviceName}</strong>の公式サイトへ遷移します。<br>
+        <span style="font-size:0.8rem;color:#636E72">※ デモサイトのため、実際のページは用意されていません。</span>
+      </div>
+    `;
+    document.body.appendChild(toast);
+
+    // アニメーション表示
+    requestAnimationFrame(() => toast.classList.add('show'));
+
+    // 3秒後に自動非表示
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
   }
 
   // --- スムーズスクロール ---
