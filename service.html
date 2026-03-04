@@ -266,7 +266,7 @@
           <p>東京のベビーシッターサービスを比較・検索できるポータルサイトです。</p>
         </div>
         <div class="footer-note">
-          <p>※ 本サイトはデモサイトです。掲載情報は架空のものです。</p>
+          <p>※ 掲載情報は調査時点のものです。最新の料金・サービス内容は各公式サイトでご確認ください。</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -361,8 +361,8 @@
           <div class="price-amount">&yen;${service.pricePerHour.toLocaleString()}</div>
           <div class="price-unit">/ 1時間あたり（税込）</div>
           <div class="price-note">最低 ${service.minimumHours}時間〜ご利用いただけます</div>
-          <button class="btn btn-primary" onclick="alert('デモサイトのため、実際の予約はできません。')">予約する</button>
-          <div class="demo-banner">※ デモサイトのため、実際の予約はできません</div>
+          <a href="${service.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-decoration:none;width:100%;justify-content:center">公式サイトで詳細を見る</a>
+          <div class="demo-banner">※ 料金・サービス内容は変更される場合があります。最新情報は公式サイトでご確認ください。</div>
         </div>
         <div class="info-card">
           <h4>料金の詳細</h4>
